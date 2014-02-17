@@ -3,9 +3,6 @@ package com.brunton.chesstimer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -44,7 +41,7 @@ public class MainActivity extends Activity {
 		player1Timer = (TextView) findViewById(R.id.player1TextView);
 		player2Timer = (TextView) findViewById(R.id.player2TextView);
 		
-		player1Timer.setText("Start!");
+		player1Timer.setText("White Starts!");
 		player2Timer.setText("Start!");
 		
 		player1Button = (Button) findViewById(R.id.player1Button);
@@ -53,16 +50,11 @@ public class MainActivity extends Activity {
 		//set what happens when Black button is clicked
 		player1Button.setOnClickListener(new View.OnClickListener() {
 			
+			//White must start timer initially, so do nothing if black not counting
 			public void onClick(View v) {
 				
-				//if it is the first time being clicked, start the black timer
-				if(player1Timer.getText().toString() == "Start!")
-				{
-					startTimer1();
-					count1Bool = true;
-				}
 				//if the black timer is currently counting, pause and start white timer
-				else if(count1Bool == true)
+				if(count1Bool == true)
 				{
 					pauseTimer1();
 				}
@@ -74,13 +66,13 @@ public class MainActivity extends Activity {
 			
 			public void onClick(View v) {
 				
-				//if it is the first time being clicked, start the white timer
+				//if it is the first time being clicked, start the Black timer
 				if(player2Timer.getText().toString() == "Start!")
 				{
-					startTimer2();
-					count2Bool = true;
+					startTimer1();
+					count1Bool = true;
 				}
-				//if the white timer is currently counting, pause and start white timer
+				//if the white timer is currently counting, pause and start black timer
 				else if(count2Bool == true)
 				{
 					pauseTimer2();
