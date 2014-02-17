@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
-	//declare variables
+	//declare variables -- 1 = Black, 2 = White
 	TextView player1Timer;
 	TextView player2Timer;
 	
@@ -101,28 +101,6 @@ public class MainActivity extends Activity {
 		}.start();
 		
 		player2Timer.setText("30");
-	}
-	
-	//starts the White timer for the first time
-	public void startTimer2()
-	{	  
-		count2 = new CountDownTimer(30000, 1000) {
-				
-			//count down second by second, update textview
-			public void onTick(long millisUntilFinished) {
-				player2Timer.setText("" + millisUntilFinished / 1000);
-			}
-		
-			//show winners and losers if timer finishes
-			public void onFinish() {
-				player1Timer.setTextSize(50);
-				player2Timer.setTextSize(50);
-				player1Timer.setText("Black Wins!");
-				player2Timer.setText("White Loses!");
-			}
-		}.start();
-			
-		player1Timer.setText("30");
 	}
 
 	//stop Black timer, start White timer
