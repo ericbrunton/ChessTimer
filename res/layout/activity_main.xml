@@ -1,70 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
 
-  <RelativeLayout
-      android:id="@+id/player2Side"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:background="#FFFFFF"
-      android:rotation="180" >
+    <TextView
+        android:id="@+id/enterTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="152dp"
+        android:text="@string/enter_time_text_view"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black" />
 
-      <Button
-          android:id="@+id/player2Button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentRight="true"
-          android:background="@android:color/transparent"
-          />
+    <EditText
+        android:id="@+id/enteredTimeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enterTimeTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="number" >
 
-      <TextView
-          android:id="@+id/player2TextView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignBaseline="@+id/player2Button"
-          android:layout_alignBottom="@+id/player2Button"
-          android:layout_centerHorizontal="true"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textSize="60dip"
-          android:textColor="@color/black" />
+        <requestFocus />
+    </EditText>
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/goButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enteredTimeEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="@string/go_button" />
 
-     <RelativeLayout
-         android:id="@+id/player1Side"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1"
-         android:background="#000000" >
-
-         <Button
-             android:id="@+id/player1Button"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:layout_alignParentBottom="true"
-             android:layout_alignParentRight="true"
-             android:background="@android:color/transparent"
-             />
-
-         <TextView
-             android:id="@+id/player1TextView"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerHorizontal="true"
-             android:layout_centerVertical="true"
-             android:textAppearance="?android:attr/textAppearanceLarge"
-             android:textSize="60dip"
-             android:textColor="@color/white" />
-
-	</RelativeLayout>
-    </LinearLayout>
+</RelativeLayout>
