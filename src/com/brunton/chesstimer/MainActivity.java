@@ -1,7 +1,7 @@
 package com.brunton.chesstimer;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
+//import android.os.CountDownTimer;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	

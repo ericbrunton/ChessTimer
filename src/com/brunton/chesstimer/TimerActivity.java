@@ -3,6 +3,7 @@ package com.brunton.chesstimer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -40,6 +41,8 @@ public class TimerActivity extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		time = extras.getInt("ENTERED_TIME");
+		
+		Log.i("thisLogIsCool","Hi man");
 		
 		//initialize variables
 		player1Timer = (TextView) findViewById(R.id.player1TextView);
@@ -92,7 +95,7 @@ public class TimerActivity extends Activity {
 			
 			//count down second by second, update textview
 			public void onTick(long millisUntilFinished) {
-				player1Timer.setText("" + millisUntilFinished / 1000);
+				player1Timer.setText("" + formatTime(millisUntilFinished));
 			}
 			
 			//show winners and losers if timer finishes
@@ -104,7 +107,7 @@ public class TimerActivity extends Activity {
 			}
 		}.start();
 			
-		player2Timer.setText("" + time / 1000);
+		player2Timer.setText("" + formatTime(time));
 	}
 
 	//stop Black timer, start White timer
@@ -113,7 +116,8 @@ public class TimerActivity extends Activity {
 		count1.cancel();
 		count1Bool = false;
 		
-		oldTimer2 = Integer.parseInt(player2Timer.getText().toString()) * 1000;
+		oldTimer2 = parseStringForPause(player2Timer.getText().toString());
+		//oldTimer2 = Integer.parseInt(player2Timer.getText().toString()) * 1000;
 		newCountDown2(oldTimer2);
 		count2Bool = true;
 	}
@@ -124,7 +128,8 @@ public class TimerActivity extends Activity {
 		count2.cancel();
 		count2Bool = false;
 		
-		oldTimer1 = Integer.parseInt(player1Timer.getText().toString()) * 1000;
+		oldTimer1 = parseStringForPause(player1Timer.getText().toString());
+		//oldTimer1 = Integer.parseInt(player1Timer.getText().toString()) * 1000;
 		newCountDown1(oldTimer1);
 		count1Bool = true;
 	}
@@ -136,7 +141,7 @@ public class TimerActivity extends Activity {
 			
 			//count down second by second
 			public void onTick(long millisUntilFinished) {
-				player1Timer.setText("" + millisUntilFinished / 1000);
+				player1Timer.setText("" + formatTime(millisUntilFinished));
 			}
 			
 			//if timer finishes, show winners and losers
@@ -156,7 +161,7 @@ public class TimerActivity extends Activity {
 				
 			//count down second by second
 			public void onTick(long millisUntilFinished) {
-				player2Timer.setText("" + millisUntilFinished / 1000);
+				player2Timer.setText("" + formatTime(millisUntilFinished));
 			}
 				
 			//if timer finishes, show winners and losers
@@ -169,6 +174,52 @@ public class TimerActivity extends Activity {
 		}.start();
 	}
 		
+	//Format the string into a minute:second format rather than just seconds
+	public String formatTime(long millis)
+	{  
+		String output = "00:00";  
+	    long seconds = millis / 1000;  
+	    long minutes = seconds / 60;  
+
+	    seconds = seconds % 60;  
+	    //minutes = minutes % 60;  
+
+	    String sec = String.valueOf(seconds);  
+	    String min = String.valueOf(minutes);  
+
+	    if (seconds < 10)  
+	        sec = "0" + seconds;  
+	    if (minutes < 10)  
+	        min= "0" + minutes;  
+
+	    output = min + ":" + sec;  
+	    return output;
+	}
+	
+	//Take minute:second format and return milliseconds
+	public Integer parseStringForPause(String stringToParse)
+	{
+		int i = stringToParse.length() - 4, number = 0, j = 1;
+		String numString = "";
+
+		while(i >= 0)
+		{
+			numString = Character.toString(stringToParse.charAt(i)) + numString;
+			i--;
+		}
+		
+		number = Integer.parseInt(numString);
+		
+		number = number * 60000;
+		
+		numString = Character.toString(stringToParse.charAt(stringToParse.length()-2));
+		number += Integer.parseInt(numString) * 10000;
+		numString = Character.toString(stringToParse.charAt(stringToParse.length()-1));
+		number += Integer.parseInt(numString) * 1000;
+		
+		return number;
+	}
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
