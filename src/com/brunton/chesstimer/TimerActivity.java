@@ -42,8 +42,6 @@ public class TimerActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		time = extras.getInt("ENTERED_TIME");
 		
-		Log.i("thisLogIsCool","Hi man");
-		
 		//initialize variables
 		player1Timer = (TextView) findViewById(R.id.player1TextView);
 		player2Timer = (TextView) findViewById(R.id.player2TextView);
